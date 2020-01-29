@@ -18,18 +18,14 @@ class ResultViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("ResultViewController: viewDidLoad!")
         
-        let label = UILabel()
-        label.text = "\(bmiResult.value) - \(bmiResult.classification.advice)"
-        label.frame = CGRect(x: 50, y: 50, width: 500, height: 200)
+        resultLabel.text = String(format: "%.1f", bmiResult.value)
+        resultAdvice.text = "\(bmiResult.classification.advice)"
         background.backgroundColor = bmiResult.classification.color
-//        view.backgroundColor = bmiResult.classification.color
-//        view.addSubview(label)
     }
     
     @IBAction func recalculatePressed(_ sender: UIButton) {
-        
+        self.dismiss(animated: true, completion: nil)
     }
     
 }

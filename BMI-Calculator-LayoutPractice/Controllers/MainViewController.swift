@@ -27,11 +27,13 @@ class MainViewController: UIViewController {
     
     @IBAction func calculatePressed(_ sender: UIButton) {
         let bmi = calculator.calculate(height: heightSlider.value, weight: weightSlider.value.rounded())
-        print("BMI: \(bmi.value)")
-        
-        let resultVC = ResultViewController()
-        resultVC.bmiResult = bmi
-        self.present(resultVC, animated: true, completion: nil)
+        performSegue(withIdentifier: "goToResult", sender: bmi)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToResult" {
+            (segue.destination as! ResultViewController).bmiResult = sender as? BMI
+        }
     }
     
 }
